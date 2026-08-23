@@ -162,7 +162,21 @@ export default function ArScanner() {
       if (!containerRef.current) return;
 
       const targetsHtml = TARGET_LIST.map((t) => {
-        // Jika ada imageOverlay (misal foto orang/GIF/vektor), munculkan foto/GIF tersebut
+        // 1. Jika ada model 3D nyata (file .glb / .gltf / .obj)
+        if (t.model3d) {
+          const isObj = t.model3d.endsWith(".obj");
+          return `
+          <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
+            <${isObj ? "a-obj-model" : "a-gltf-model"}
+              src="${t.model3d}"
+              position="0 0 0.2"
+              scale="0.3 0.3 0.3"
+              animation="${t.animation}"
+            ></${isObj ? "a-obj-model" : "a-gltf-model"}>
+          </a-entity>`;
+        }
+
+        // 2. Jika ada imageOverlay (foto asli / PNG / GIF)
         if (t.imageOverlay) {
           return `
           <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
@@ -175,7 +189,7 @@ export default function ArScanner() {
           </a-entity>`;
         }
 
-        // Default: Model Geometri 3D Unik dengan warna dan gerakan custom
+        // 3. Default: Model Geometri 3D Unik
         return `
         <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
           <${t.shape}
@@ -407,6 +421,33 @@ export default function ArScanner() {
             <RefreshCw className="w-4 h-4" />
             <span>Coba Lagi</span>
           </button>
+        </div>
+      )}
+
+      {/* Animated Corner Flower Filters saat Target Terdeteksi */}
+      {activeTitle && (
+        <div className="absolute inset-0 pointer-events-none z-15 overflow-hidden">
+          {/* Bunga Kiri Bawah */}
+          <div className="absolute bottom-20 left-4 text-pink-400/90 animate-bounce" style={{ animationDuration: "2.5s" }}>
+            <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/30 shadow-lg">
+              <span className="text-2xl animate-spin" style={{ animationDuration: "8s" }}>🌸</span>
+              <span className="text-xl">🌺</span>
+            </div>
+          </div>
+          {/* Bunga Kanan Bawah */}
+          <div className="absolute bottom-20 right-4 text-pink-400/90 animate-bounce" style={{ animationDuration: "3s" }}>
+            <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/30 shadow-lg">
+              <span className="text-xl">🌺</span>
+              <span className="text-2xl animate-spin" style={{ animationDuration: "7s" }}>🌸</span>
+            </div>
+          </div>
+          {/* Kelopak Bunga Melayang Atas */}
+          <div className="absolute top-16 right-8 animate-pulse">
+            <span className="text-2xl">✨ 🌸</span>
+          </div>
+          <div className="absolute top-20 left-8 animate-pulse" style={{ animationDelay: "1s" }}>
+            <span className="text-2xl">🌸 ✨</span>
+          </div>
         </div>
       )}
 

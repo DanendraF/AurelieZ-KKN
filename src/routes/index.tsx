@@ -107,9 +107,11 @@ function Index() {
       {/* Top Header */}
       <header className="relative z-10 py-5 px-6 max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-2xl bg-[#C2185B] flex items-center justify-center text-white shadow-md shadow-[#C2185B]/30">
-            <Heart className="w-5 h-5 fill-current" />
-          </div>
+          <img
+            src="/assets/aurelie-Logo.png"
+            alt="CritaEyang Logo"
+            className="w-9 h-9 object-contain rounded-xl shadow-sm"
+          />
           <span className="text-xl font-black tracking-tight text-[#2C2C2C]">
             Crita<span className="text-[#C2185B]">Eyang</span> 🌸
           </span>
