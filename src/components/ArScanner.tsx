@@ -35,34 +35,31 @@ export const TARGET_LIST = [
     index: 0,
     title: "Animal - KATSEYE",
     audioSrc: "/assets/Animal.mp3",
-    startTime: 45, // ⏱️ Mulai dari detik ke-45 (reff/tengah lagu)
-    duration: 60,  // ⏱️ Memutar selama 60 detik (1 menit) lalu loop
-    imageOverlay: undefined,
-    color: "#3B82F6",
-    shape: "a-sphere",
-    animation: "property: position; to: 0 0.3 0.25; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine",
+    startTime: 45,
+    duration: 60,
+    flowerLeft: "🌸",
+    flowerRight: "🌷",
+    loveIcon: "💖",
   },
   {
     index: 1,
     title: "About You - The 1975",
     audioSrc: "/assets/About You.mp3",
-    startTime: 60, // ⏱️ Mulai dari detik ke-60 (1 menit)
+    startTime: 60,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#EC4899",
-    shape: "a-box",
-    animation: "property: rotation; to: 0 360 360; loop: true; dur: 4000; easing: linear",
+    flowerLeft: "🌹",
+    flowerRight: "🌺",
+    loveIcon: "💕",
   },
   {
     index: 2,
     title: "Backburner - NIKI",
     audioSrc: "/assets/Backburner.mp3",
-    startTime: 50, // ⏱️ Mulai dari detik ke-50
+    startTime: 50,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#10B981",
-    shape: "a-torus",
-    animation: "property: rotation; to: 360 360 0; loop: true; dur: 5000; easing: linear",
+    flowerLeft: "🌻",
+    flowerRight: "🌼",
+    loveIcon: "💗",
   },
   {
     index: 3,
@@ -70,10 +67,9 @@ export const TARGET_LIST = [
     audioSrc: "/assets/December.mp3",
     startTime: 40,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#F59E0B",
-    shape: "a-cone",
-    animation: "property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear",
+    flowerLeft: "🪻",
+    flowerRight: "🌸",
+    loveIcon: "💓",
   },
   {
     index: 4,
@@ -81,10 +77,9 @@ export const TARGET_LIST = [
     audioSrc: "/assets/Die With A Smile.mp3",
     startTime: 65,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#8B5CF6",
-    shape: "a-cylinder",
-    animation: "property: scale; to: 0.6 0.6 0.6; dir: alternate; loop: true; dur: 800; easing: easeInOutQuad",
+    flowerLeft: "🌺",
+    flowerRight: "🌷",
+    loveIcon: "❤️",
   },
   {
     index: 5,
@@ -92,10 +87,9 @@ export const TARGET_LIST = [
     audioSrc: "/assets/Famous Last Words.mp3",
     startTime: 55,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#EF4444",
-    shape: "a-octahedron",
-    animation: "property: rotation; to: 360 0 360; loop: true; dur: 2500; easing: easeInOutCubic",
+    flowerLeft: "🌷",
+    flowerRight: "🌻",
+    loveIcon: "💖",
   },
   {
     index: 6,
@@ -103,10 +97,9 @@ export const TARGET_LIST = [
     audioSrc: "/assets/Payphone.mp3",
     startTime: 30,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#06B6D4",
-    shape: "a-ring",
-    animation: "property: rotation; to: 0 0 360; loop: true; dur: 3500; easing: linear",
+    flowerLeft: "🌼",
+    flowerRight: "🌹",
+    loveIcon: "💘",
   },
   {
     index: 7,
@@ -114,10 +107,9 @@ export const TARGET_LIST = [
     audioSrc: "/assets/Sailor Song.mp3",
     startTime: 45,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#84CC16",
-    shape: "a-torus-knot",
-    animation: "property: rotation; to: 360 360 360; loop: true; dur: 6000; easing: linear",
+    flowerLeft: "🌸",
+    flowerRight: "🪻",
+    loveIcon: "💝",
   },
   {
     index: 8,
@@ -125,10 +117,9 @@ export const TARGET_LIST = [
     audioSrc: "/assets/Tanpa Cinta.mp3",
     startTime: 50,
     duration: 60,
-    imageOverlay: undefined,
-    color: "#F97316",
-    shape: "a-dodecahedron",
-    animation: "property: position; to: 0 0 0.5; dir: alternate; loop: true; dur: 1500; easing: easeInOutBack",
+    flowerLeft: "🌹",
+    flowerRight: "🌸",
+    loveIcon: "💞",
   },
 ];
 
@@ -137,8 +128,11 @@ export default function ArScanner() {
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
   const audioTimeUpdateHandlerRef = useRef<(() => void) | null>(null);
   const [activeTitle, setActiveTitle] = useState<string | null>(null);
+  const [activeTargetIndex, setActiveTargetIndex] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isInitializing, setIsInitializing] = useState(true);
+
+  const activeTarget = activeTargetIndex !== null ? TARGET_LIST.find(t => t.index === activeTargetIndex) : null;
 
   const stopCurrentAudio = () => {
     if (currentAudioRef.current) {
@@ -211,14 +205,32 @@ export default function ArScanner() {
       `;
 
       const sceneEl = containerRef.current.querySelector("a-scene");
-      sceneEl?.addEventListener("arReady", () => {
-        setIsInitializing(false);
-        // Force video element to show on mobile safari if obscured by background
+      const fixVideoBounds = () => {
         const video = document.querySelector("video");
         if (video) {
+          video.style.position = "absolute";
+          video.style.top = "0";
+          video.style.left = "0";
+          video.style.width = "100%";
+          video.style.height = "100%";
+          video.style.objectFit = "cover";
           video.style.opacity = "1";
           video.style.zIndex = "1";
         }
+        const canvas = containerRef.current?.querySelector("canvas");
+        if (canvas) {
+          canvas.style.position = "absolute";
+          canvas.style.top = "0";
+          canvas.style.left = "0";
+          canvas.style.width = "100%";
+          canvas.style.height = "100%";
+          canvas.style.objectFit = "cover";
+        }
+      };
+
+      sceneEl?.addEventListener("arReady", () => {
+        setIsInitializing(false);
+        fixVideoBounds();
       });
       sceneEl?.addEventListener("arError", (err) => {
         console.error("MindAR Error:", err);
@@ -229,12 +241,8 @@ export default function ArScanner() {
       // Fallback jika arReady lambat dipanggil
       setTimeout(() => {
         setIsInitializing(false);
-        const video = document.querySelector("video");
-        if (video) {
-          video.style.opacity = "1";
-          video.style.zIndex = "1";
-        }
-      }, 3500);
+        fixVideoBounds();
+      }, 2500);
 
       // Auto trigger jika dibuka via QR Code spesifik target (misal /scan?target=1)
       const urlParams = new URLSearchParams(window.location.search);
@@ -283,6 +291,7 @@ export default function ArScanner() {
           stopCurrentAudio();
           if (targetData) {
             setActiveTitle(targetData.title);
+            setActiveTargetIndex(targetData.index);
             const audio = new Audio(targetData.audioSrc);
             const startSec = targetData.startTime || 0;
             const playDur = targetData.duration || 60;
@@ -317,6 +326,7 @@ export default function ArScanner() {
         el.addEventListener("targetLost", () => {
           stopCurrentAudio();
           setActiveTitle(null);
+          setActiveTargetIndex(null);
         });
       });
     } catch {
@@ -426,52 +436,51 @@ export default function ArScanner() {
         </div>
       )}
 
-      {/* Animated Corner Flower Filters saat Target Terdeteksi */}
+      {/* Minimalist Corner Flower & Heart Accent saat Target Terdeteksi */}
       {activeTitle && (
         <div className="absolute inset-0 pointer-events-none z-15 overflow-hidden">
-          {/* Bunga Kiri Bawah */}
-          <div className="absolute bottom-20 left-4 text-pink-400/90 animate-bounce" style={{ animationDuration: "2.5s" }}>
-            <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/30 shadow-lg">
-              <span className="text-2xl animate-spin" style={{ animationDuration: "8s" }}>🌸</span>
-              <span className="text-xl">🌺</span>
+          {/* Subtle Bunga + Love Kiri Bawah */}
+          <div className="absolute bottom-20 left-4 text-white animate-fade-in">
+            <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-medium">
+              <span className="animate-spin" style={{ animationDuration: "9s" }}>
+                {activeTarget?.flowerLeft || "🌸"}
+              </span>
+              <span>{activeTarget?.loveIcon || "💖"}</span>
+              <span className="text-white/80">Memutar Pesan</span>
             </div>
           </div>
-          {/* Bunga Kanan Bawah */}
-          <div className="absolute bottom-20 right-4 text-pink-400/90 animate-bounce" style={{ animationDuration: "3s" }}>
-            <div className="flex items-center gap-1 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/30 shadow-lg">
-              <span className="text-xl">🌺</span>
-              <span className="text-2xl animate-spin" style={{ animationDuration: "7s" }}>🌸</span>
+
+          {/* Subtle Bunga Kanan Bawah */}
+          <div className="absolute bottom-20 right-4 text-white animate-fade-in">
+            <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs font-medium">
+              <span>{activeTarget?.loveIcon || "💖"}</span>
+              <span className="animate-spin" style={{ animationDuration: "8s" }}>
+                {activeTarget?.flowerRight || "🌺"}
+              </span>
             </div>
-          </div>
-          {/* Kelopak Bunga Melayang Atas */}
-          <div className="absolute top-16 right-8 animate-pulse">
-            <span className="text-2xl">✨ 🌸</span>
-          </div>
-          <div className="absolute top-20 left-8 animate-pulse" style={{ animationDelay: "1s" }}>
-            <span className="text-2xl">🌸 ✨</span>
           </div>
         </div>
       )}
 
-      {/* Bottom Floating Status Banner */}
+      {/* Minimalist Bottom Status Banner */}
       {!error && !isInitializing && (
         <div className="absolute bottom-6 left-4 right-4 z-20 pointer-events-none flex justify-center">
           <div
-            className={`w-full max-w-sm px-6 py-4 rounded-2xl backdrop-blur-xl border shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 text-center ${
+            className={`px-5 py-2.5 rounded-full backdrop-blur-md border shadow-lg transition-all duration-300 flex items-center justify-center gap-2 text-center ${
               activeTitle
-                ? "bg-[#2D5A46]/95 border-emerald-400/40 text-emerald-100 scale-105"
-                : "bg-slate-900/90 border-amber-500/30 text-amber-200"
+                ? "bg-[#C2185B]/90 border-[#C2185B]/40 text-white"
+                : "bg-black/60 border-white/20 text-white/90"
             }`}
           >
             {activeTitle ? (
               <>
-                <Sparkles className="w-5 h-5 text-emerald-300 animate-spin" />
-                <span className="font-bold text-base tracking-wide">{activeTitle}</span>
+                <Volume2 className="w-4 h-4 text-amber-200 animate-pulse" />
+                <span className="font-semibold text-xs sm:text-sm tracking-wide">{activeTitle}</span>
               </>
             ) : (
               <>
-                <Camera className="w-5 h-5 text-amber-400 animate-pulse" />
-                <span className="font-semibold text-sm">Objek Belum Dikenali (Arahkan ke Foto Target)</span>
+                <Camera className="w-4 h-4 text-amber-300" />
+                <span className="font-medium text-xs sm:text-sm">Arahkan kamera ke foto target</span>
               </>
             )}
           </div>
