@@ -234,7 +234,6 @@ export default function ArScanner() {
             const startSec = targetData.startTime || 0;
             const playDur = targetData.duration || 60;
 
-            audio.currentTime = startSec;
             currentAudioRef.current = audio;
 
             const handleTimeUpdate = () => {
@@ -246,7 +245,19 @@ export default function ArScanner() {
             audioTimeUpdateHandlerRef.current = handleTimeUpdate;
             audio.addEventListener("timeupdate", handleTimeUpdate);
 
-            void audio.play().catch(() => {});
+            // Play audio first, then seek to startTime once ready
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  if (startSec > 0 && Math.abs(audio.currentTime - startSec) > 2) {
+                    audio.currentTime = startSec;
+                  }
+                })
+                .catch((err) => {
+                  console.warn("Autoplay audio blocked or error:", err);
+                });
+            }
           }
         });
 
