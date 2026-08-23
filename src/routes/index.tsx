@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Camera, Volume2, Sparkles, ArrowRight, Heart } from "lucide-react";
+import { Camera, Volume2, Sparkles, ArrowRight, Heart, Music, Image as ImageIcon, Sun } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,21 +25,21 @@ const steps = [
   {
     step: "1",
     title: "Tekan Tombol Mulai",
-    desc: "Klik tombol hijau besar di bawah untuk membuka kamera.",
+    desc: "Klik tombol hijau di bawah untuk mengaktifkan kamera.",
     icon: Camera,
     color: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
   },
   {
     step: "2",
     title: "Arahkan ke Foto",
-    desc: "Arahkan kamera HP ke foto orang yang ingin dipindai.",
+    desc: "Posisikan foto di dalam tampilan kamera HP.",
     icon: Sparkles,
     color: "bg-amber-500/10 text-amber-600 border-amber-500/20",
   },
   {
     step: "3",
     title: "Dengarkan Lagu",
-    desc: "Musik dan cerita indah akan otomatis berputar.",
+    desc: "Lagu kenangan indah akan otomatis berputar.",
     icon: Volume2,
     color: "bg-rose-500/10 text-rose-600 border-rose-500/20",
   },
@@ -48,57 +48,79 @@ const steps = [
 function Index() {
   return (
     <div className="relative min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-emerald-200 overflow-hidden">
+      {/* Background Floating Nostalgia Particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-12 left-10 text-emerald-300/40 animate-pulse transition-transform duration-1000">
+          <Heart className="w-8 h-8 rotate-12" />
+        </div>
+        <div className="absolute top-1/4 right-12 text-amber-300/50 animate-bounce transition-all duration-700">
+          <Music className="w-9 h-9 -rotate-12" />
+        </div>
+        <div className="absolute bottom-1/3 left-16 text-rose-300/40 animate-pulse">
+          <ImageIcon className="w-10 h-10 rotate-6" />
+        </div>
+        <div className="absolute top-2/3 right-1/4 text-emerald-400/30 animate-spin transition-all duration-1000" style={{ animationDuration: "12s" }}>
+          <Sun className="w-10 h-10" />
+        </div>
+        <div className="absolute bottom-12 left-1/3 text-amber-400/40 animate-pulse">
+          <Sparkles className="w-7 h-7" />
+        </div>
+        <div className="absolute top-16 left-1/2 text-rose-400/30 animate-bounce" style={{ animationDuration: "3s" }}>
+          <Heart className="w-6 h-6" />
+        </div>
+      </div>
+
       {/* Subtle Background Pattern & Gradient Blobs */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-50 pointer-events-none z-0" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-emerald-100/50 via-amber-50/30 to-transparent blur-3xl -z-10 pointer-events-none" />
 
       {/* Top Simple Header */}
-      <header className="relative z-10 py-5 px-6 max-w-6xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md">
-            <Heart className="w-5 h-5 fill-current" />
+      <header className="relative z-10 py-4 px-6 max-w-6xl mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-sm">
+            <Heart className="w-4 h-4 fill-current" />
           </div>
-          <span className="text-lg font-bold tracking-tight text-slate-900">
+          <span className="text-base font-bold tracking-tight text-slate-900">
             Scan Cerita <span className="text-emerald-600">KKN</span>
           </span>
         </div>
-        <span className="text-xs font-semibold px-3 py-1 bg-emerald-100/80 border border-emerald-200 text-emerald-800 rounded-full">
+        <span className="text-[11px] font-semibold px-2.5 py-1 bg-emerald-100/80 border border-emerald-200 text-emerald-800 rounded-full">
           Ramah Lansia
         </span>
       </header>
 
       {/* Main Hero Section */}
-      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-2 pb-16">
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
-          {/* Left Column: Text & Responsive Button */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div className="space-y-3">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 font-medium text-xs sm:text-sm">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-2 pb-14">
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          {/* Left Column: Text & Compact Button */}
+          <div className="lg:col-span-7 space-y-5 text-center lg:text-left">
+            <div className="space-y-2.5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 font-medium text-xs">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                 Album Foto Kenangan Digital
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight tracking-tight">
                 Pindai Foto, <br className="hidden sm:inline" />
                 <span className="text-emerald-600 underline decoration-emerald-300 decoration-wavy underline-offset-4">
                   Dengarkan Lagunya
                 </span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
                 Arahkan kamera HP ke foto fisik. Lagu dan kenangan indah akan langsung berputar secara otomatis.
               </p>
             </div>
 
-            {/* Responsive Senior-Friendly CTA Button */}
-            <div className="pt-2">
+            {/* Compact Senior-Friendly CTA Button */}
+            <div className="pt-1">
               <Link
                 to="/scan"
-                className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 sm:px-9 sm:py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-lg sm:text-xl font-bold shadow-lg shadow-emerald-600/25 transition-all duration-200 active:scale-95"
+                className="group relative inline-flex items-center justify-center gap-2.5 px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm sm:text-base font-bold shadow-md shadow-emerald-600/20 transition-all duration-200 active:scale-95"
               >
-                <Camera className="w-6 h-6 sm:w-7 sm:h-7" />
+                <Camera className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Buka Kamera Sekarang</span>
-                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <p className="text-[11px] sm:text-xs text-slate-400 mt-2.5 font-medium">
+              <p className="text-[11px] text-slate-400 mt-2 font-medium">
                 *Tanpa perlu mendaftar atau mengunduh aplikasi
               </p>
             </div>
