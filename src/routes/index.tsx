@@ -47,76 +47,80 @@ const steps = [
 
 function Index() {
   return (
-    <div className="min-h-screen bg-amber-50/40 text-slate-800 font-sans selection:bg-emerald-200">
+    <div className="relative min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-emerald-200 overflow-hidden">
+      {/* Subtle Background Pattern & Gradient Blobs */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-60 pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-emerald-100/50 via-amber-50/30 to-transparent blur-3xl -z-10 pointer-events-none" />
+
       {/* Top Simple Header */}
-      <header className="py-6 px-6 max-w-6xl mx-auto flex items-center justify-between">
+      <header className="relative z-10 py-5 px-6 max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-md">
+          <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md">
             <Heart className="w-5 h-5 fill-current" />
           </div>
-          <span className="text-xl font-extrabold tracking-tight text-slate-900">
+          <span className="text-lg font-bold tracking-tight text-slate-900">
             Scan Cerita <span className="text-emerald-600">KKN</span>
           </span>
         </div>
-        <span className="text-xs font-semibold px-3 py-1.5 bg-emerald-100 text-emerald-800 rounded-full">
-          Mudah & Ramah Lansia
+        <span className="text-xs font-semibold px-3 py-1 bg-emerald-100/80 border border-emerald-200 text-emerald-800 rounded-full">
+          Ramah Lansia
         </span>
       </header>
 
       {/* Main Hero Section */}
-      <main className="max-w-6xl mx-auto px-6 pt-4 pb-16">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Text & Large Call To Action */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 font-semibold text-sm">
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-2 pb-16">
+        <div className="grid lg:grid-cols-12 gap-10 items-center">
+          {/* Left Column: Text & Responsive Button */}
+          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div className="space-y-3">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 font-medium text-xs sm:text-sm">
                 <Sparkles className="w-4 h-4 text-emerald-600" />
                 Album Foto Kenangan Digital
               </span>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.15] tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
                 Pindai Foto, <br className="hidden sm:inline" />
-                <span className="text-emerald-600 underline decoration-emerald-300 decoration-wavy underline-offset-8">
+                <span className="text-emerald-600 underline decoration-emerald-300 decoration-wavy underline-offset-4">
                   Dengarkan Lagunya
                 </span>
               </h1>
-              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0 pt-2">
-                Cukup arahkan kamera HP ke foto fisik. Lagu dan kenangan indah akan langsung berputar secara otomatis.
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                Arahkan kamera HP ke foto fisik. Lagu dan kenangan indah akan langsung berputar secara otomatis.
               </p>
             </div>
 
-            {/* Giant Senior-Friendly CTA Button */}
+            {/* Responsive Senior-Friendly CTA Button */}
             <div className="pt-2">
               <Link
                 to="/scan"
-                className="group relative inline-flex items-center justify-center gap-4 w-full sm:w-auto px-10 py-5 rounded-3xl bg-emerald-600 hover:bg-emerald-500 text-white text-2xl font-black shadow-2xl shadow-emerald-600/30 transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                className="group relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 sm:px-9 sm:py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-lg sm:text-xl font-bold shadow-lg shadow-emerald-600/25 transition-all duration-200 active:scale-95"
               >
-                <Camera className="w-8 h-8 animate-bounce" />
+                <Camera className="w-6 h-6 sm:w-7 sm:h-7" />
                 <span>Buka Kamera Sekarang</span>
-                <ArrowRight className="w-7 h-7 transition-transform group-hover:translate-x-2" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" />
               </Link>
-              <p className="text-xs text-slate-500 mt-3 font-medium">
-                *Tanpa perlu mendaftar atau mengunduh aplikasi tambahan
+              <p className="text-[11px] sm:text-xs text-slate-400 mt-2.5 font-medium">
+                *Tanpa perlu mendaftar atau mengunduh aplikasi
               </p>
             </div>
 
             {/* Simple 3 Steps */}
             <div className="pt-6 border-t border-slate-200/80">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4 text-center lg:text-left">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center lg:text-left">
                 Tiga Langkah Mudah:
               </h3>
-              <div className="grid sm:grid-cols-3 gap-4 text-left">
+              <div className="grid sm:grid-cols-3 gap-3 text-left">
                 {steps.map((s) => (
                   <div
                     key={s.step}
-                    className="p-4 rounded-2xl bg-white border border-slate-200/70 shadow-sm hover:shadow-md transition"
+                    className="p-3.5 rounded-xl bg-white/80 backdrop-blur-sm border border-slate-200/80 shadow-sm"
                   >
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-8 h-8 rounded-xl border ${s.color} flex items-center justify-center font-bold text-sm`}>
+                    <div className="flex items-center gap-2.5 mb-1.5">
+                      <div className={`w-7 h-7 rounded-lg border ${s.color} flex items-center justify-center font-bold text-xs`}>
                         {s.step}
                       </div>
-                      <span className="font-bold text-slate-900 text-sm">{s.title}</span>
+                      <span className="font-bold text-slate-900 text-xs sm:text-sm">{s.title}</span>
                     </div>
-                    <p className="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
+                    <p className="text-[11px] sm:text-xs text-slate-500 leading-normal">{s.desc}</p>
                   </div>
                 ))}
               </div>
@@ -125,18 +129,18 @@ function Index() {
 
           {/* Right Column: Warm Visual Illustration */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-md">
-              {/* Soft decorative backdrop */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-emerald-200 to-amber-200 rounded-[2.5rem] blur-2xl opacity-60 -z-10" />
+            <div className="relative w-full max-w-sm sm:max-w-md">
+              {/* Soft backdrop glow */}
+              <div className="absolute -inset-3 bg-gradient-to-tr from-emerald-200/60 to-amber-200/60 rounded-3xl blur-xl -z-10" />
               
               {/* Image Frame */}
-              <div className="relative rounded-[2rem] overflow-hidden border-8 border-white bg-white shadow-2xl transform hover:scale-[1.02] transition duration-500">
+              <div className="relative rounded-2xl overflow-hidden border-4 border-white bg-white shadow-xl">
                 <img
                   src="/assets/hero_illustration.jpg"
                   alt="Ilustrasi Lansia Menggunakan AR Scan"
                   className="w-full h-auto object-cover"
                 />
-                <div className="absolute bottom-4 left-4 right-4 bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl text-white text-center">
+                <div className="absolute bottom-3 left-3 right-3 bg-slate-900/85 backdrop-blur-md p-3 rounded-xl text-white text-center">
                   <p className="text-xs font-medium text-amber-200">
                     "Kenangan lama jadi terasa lebih hangat dan berkesan."
                   </p>
@@ -148,7 +152,7 @@ function Index() {
       </main>
 
       {/* Simple Footer */}
-      <footer className="py-6 border-t border-slate-200/80 text-center text-xs text-slate-500">
+      <footer className="relative z-10 py-5 border-t border-slate-200/80 text-center text-xs text-slate-400">
         <p>© 2026 AurelieZ KKN Project • Didesain Khusus untuk Kenyamanan Semua Usia</p>
       </footer>
     </div>
