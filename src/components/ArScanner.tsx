@@ -33,19 +33,19 @@ function loadScript(src: string) {
 export const TARGET_LIST = [
   {
     index: 0,
-    title: "About You - The 1975",
-    audioSrc: "/assets/About You.mp3",
-    color: "#EC4899",
-    shape: "a-box",
-    animation: "property: rotation; to: 0 360 360; loop: true; dur: 4000; easing: linear",
-  },
-  {
-    index: 1,
     title: "Animal - KATSEYE",
     audioSrc: "/assets/Animal.mp3",
     color: "#3B82F6",
     shape: "a-sphere",
     animation: "property: position; to: 0 0.3 0.25; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine",
+  },
+  {
+    index: 1,
+    title: "About You - The 1975",
+    audioSrc: "/assets/About You.mp3",
+    color: "#EC4899",
+    shape: "a-box",
+    animation: "property: rotation; to: 0 360 360; loop: true; dur: 4000; easing: linear",
   },
   {
     index: 2,
