@@ -26,7 +26,7 @@ const steps = [
   {
     step: "1",
     title: "Tekan Tombol Mulai",
-    desc: "Klik tombol merah muda di bawah untuk membuka kamera HP.",
+    desc: "Klik tombol merah muda diatas untuk membuka kamera HP.",
     icon: Camera,
     color: "bg-[#C2185B]/10 text-[#C2185B] border-[#C2185B]/20",
   },
