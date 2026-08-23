@@ -29,13 +29,14 @@ function loadScript(src: string) {
   });
 }
 
-// 🎨 🎵 DAFTAR 9 TARGET (BISA GAMBAR/GIF/MODEL 3D UNIK)
+// 🎨 🎵 DAFTAR 9 TARGET (BISA MEMUTAR DARI TENGAH LAGU)
 export const TARGET_LIST = [
   {
     index: 0,
     title: "Animal - KATSEYE",
     audioSrc: "/assets/Animal.mp3",
-    // 💡 Opsional: Masukkan path gambar overlay jika ada (misal "/assets/katseye_photo.png")
+    startTime: 45, // ⏱️ Mulai dari detik ke-45 (reff/tengah lagu)
+    duration: 60,  // ⏱️ Memutar selama 60 detik (1 menit) lalu loop
     imageOverlay: undefined,
     color: "#3B82F6",
     shape: "a-sphere",
@@ -45,6 +46,8 @@ export const TARGET_LIST = [
     index: 1,
     title: "About You - The 1975",
     audioSrc: "/assets/About You.mp3",
+    startTime: 60, // ⏱️ Mulai dari detik ke-60 (1 menit)
+    duration: 60,
     imageOverlay: undefined,
     color: "#EC4899",
     shape: "a-box",
@@ -54,6 +57,8 @@ export const TARGET_LIST = [
     index: 2,
     title: "Backburner - NIKI",
     audioSrc: "/assets/Backburner.mp3",
+    startTime: 50, // ⏱️ Mulai dari detik ke-50
+    duration: 60,
     imageOverlay: undefined,
     color: "#10B981",
     shape: "a-torus",
@@ -63,6 +68,8 @@ export const TARGET_LIST = [
     index: 3,
     title: "December - Neck Deep",
     audioSrc: "/assets/December.mp3",
+    startTime: 40,
+    duration: 60,
     imageOverlay: undefined,
     color: "#F59E0B",
     shape: "a-cone",
@@ -72,6 +79,8 @@ export const TARGET_LIST = [
     index: 4,
     title: "Die With A Smile - Lady Gaga & Bruno Mars",
     audioSrc: "/assets/Die With A Smile.mp3",
+    startTime: 65,
+    duration: 60,
     imageOverlay: undefined,
     color: "#8B5CF6",
     shape: "a-cylinder",
@@ -81,6 +90,8 @@ export const TARGET_LIST = [
     index: 5,
     title: "Famous Last Words - My Chemical Romance",
     audioSrc: "/assets/Famous Last Words.mp3",
+    startTime: 55,
+    duration: 60,
     imageOverlay: undefined,
     color: "#EF4444",
     shape: "a-octahedron",
@@ -90,6 +101,8 @@ export const TARGET_LIST = [
     index: 6,
     title: "Payphone - Maroon 5",
     audioSrc: "/assets/Payphone.mp3",
+    startTime: 30,
+    duration: 60,
     imageOverlay: undefined,
     color: "#06B6D4",
     shape: "a-ring",
@@ -99,6 +112,8 @@ export const TARGET_LIST = [
     index: 7,
     title: "Sailor Song - Gigi Perez",
     audioSrc: "/assets/Sailor Song.mp3",
+    startTime: 45,
+    duration: 60,
     imageOverlay: undefined,
     color: "#84CC16",
     shape: "a-torus-knot",
@@ -108,6 +123,8 @@ export const TARGET_LIST = [
     index: 8,
     title: "Tanpa Cinta - Yovie & Nuno",
     audioSrc: "/assets/Tanpa Cinta.mp3",
+    startTime: 50,
+    duration: 60,
     imageOverlay: undefined,
     color: "#F97316",
     shape: "a-dodecahedron",
@@ -118,12 +135,17 @@ export const TARGET_LIST = [
 export default function ArScanner() {
   const containerRef = useRef<HTMLDivElement>(null);
   const currentAudioRef = useRef<HTMLAudioElement | null>(null);
+  const audioTimeUpdateHandlerRef = useRef<(() => void) | null>(null);
   const [activeTitle, setActiveTitle] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isInitializing, setIsInitializing] = useState(true);
 
   const stopCurrentAudio = () => {
     if (currentAudioRef.current) {
+      if (audioTimeUpdateHandlerRef.current) {
+        currentAudioRef.current.removeEventListener("timeupdate", audioTimeUpdateHandlerRef.current);
+        audioTimeUpdateHandlerRef.current = null;
+      }
       currentAudioRef.current.pause();
       currentAudioRef.current.currentTime = 0;
       currentAudioRef.current = null;
@@ -209,8 +231,21 @@ export default function ArScanner() {
           if (targetData) {
             setActiveTitle(targetData.title);
             const audio = new Audio(targetData.audioSrc);
-            audio.loop = true;
+            const startSec = targetData.startTime || 0;
+            const playDur = targetData.duration || 60;
+
+            audio.currentTime = startSec;
             currentAudioRef.current = audio;
+
+            const handleTimeUpdate = () => {
+              if (audio.currentTime >= startSec + playDur) {
+                audio.currentTime = startSec;
+              }
+            };
+
+            audioTimeUpdateHandlerRef.current = handleTimeUpdate;
+            audio.addEventListener("timeupdate", handleTimeUpdate);
+
             void audio.play().catch(() => {});
           }
         });
