@@ -238,8 +238,8 @@ export default function ArScanner() {
           <div
             className={`w-full max-w-sm px-6 py-4 rounded-2xl backdrop-blur-xl border shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 text-center ${
               activeTitle
-                ? "bg-gradient-to-r from-pink-600/90 to-purple-600/90 border-pink-400/30 text-white scale-105"
-                : "bg-slate-900/80 border-white/10 text-slate-200"
+                ? "bg-gradient-to-r from-emerald-600/90 to-teal-600/90 border-emerald-400/30 text-white scale-105"
+                : "bg-slate-900/90 border-amber-500/30 text-amber-200"
             }`}
           >
             {activeTitle ? (
@@ -249,8 +249,8 @@ export default function ArScanner() {
               </>
             ) : (
               <>
-                <Camera className="w-5 h-5 text-cyan-400 animate-pulse" />
-                <span className="font-medium text-sm">Arahkan kamera ke Gambar Target</span>
+                <Camera className="w-5 h-5 text-amber-400 animate-pulse" />
+                <span className="font-semibold text-sm">Objek Belum Dikenali (Arahkan ke Gambar Target)</span>
               </>
             )}
           </div>
