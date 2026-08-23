@@ -176,7 +176,7 @@ export default function ArScanner() {
           </a-entity>`;
         }
 
-        // 2. Jika ada imageOverlay (foto asli / PNG / GIF)
+        // 2. Jika ada imageOverlay (foto / PNG / GIF)
         if (t.imageOverlay) {
           return `
           <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
@@ -189,18 +189,9 @@ export default function ArScanner() {
           </a-entity>`;
         }
 
-        // 3. Default: Model Geometri 3D Unik
+        // 3. Tanpa 3D shape/geometri bawaan (hanya trigger deteksi target & putar audio + filter partikel bunga)
         return `
         <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
-          <${t.shape}
-            position="0 0 0.25"
-            scale="0.35 0.35 0.35"
-            radius="0.4"
-            radius-tubular="0.08"
-            color="${t.color}"
-            material="roughness: 0.2; metalness: 0.7"
-            animation="${t.animation}"
-          ></${t.shape}>
         </a-entity>`;
       }).join("");
 
@@ -208,11 +199,11 @@ export default function ArScanner() {
         <a-scene
           mindar-image="imageTargetSrc: /targets/targets.mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
           color-space="sRGB"
-          renderer="colorManagement: true, physicallyCorrectLights"
+          renderer="colorManagement: true, physicallyCorrectLights, alpha: true"
           vr-mode-ui="enabled: false"
           device-orientation-permission-ui="enabled: false"
           embedded
-          style="width:100%;height:100%"
+          style="width:100%;height:100%;background:transparent;"
         >
           <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
           ${targetsHtml}
@@ -222,6 +213,12 @@ export default function ArScanner() {
       const sceneEl = containerRef.current.querySelector("a-scene");
       sceneEl?.addEventListener("arReady", () => {
         setIsInitializing(false);
+        // Force video element to show on mobile safari if obscured by background
+        const video = document.querySelector("video");
+        if (video) {
+          video.style.opacity = "1";
+          video.style.zIndex = "1";
+        }
       });
       sceneEl?.addEventListener("arError", (err) => {
         console.error("MindAR Error:", err);
@@ -232,6 +229,11 @@ export default function ArScanner() {
       // Fallback jika arReady lambat dipanggil
       setTimeout(() => {
         setIsInitializing(false);
+        const video = document.querySelector("video");
+        if (video) {
+          video.style.opacity = "1";
+          video.style.zIndex = "1";
+        }
       }, 3500);
 
       // Auto trigger jika dibuka via QR Code spesifik target (misal /scan?target=1)
