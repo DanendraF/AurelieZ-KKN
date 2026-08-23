@@ -104,7 +104,7 @@ function Index() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#2C2C2C] leading-tight tracking-tight">
                 Pindai Foto, <br className="hidden sm:inline" />
                 <span className="text-[#C2185B] underline decoration-[#C2185B]/40 decoration-wavy underline-offset-4">
-                  Dengarkan Lagunya
+                  Dengarkan Pesan di Baliknya
                 </span>
               </h1>
               <p className="text-base sm:text-lg text-[#3E2723] leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">

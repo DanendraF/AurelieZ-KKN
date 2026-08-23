@@ -351,10 +351,10 @@ export default function ArScanner() {
       {!error && !isInitializing && !activeTitle && (
         <div className="absolute inset-0 z-10 pointer-events-none flex flex-col items-center justify-center p-6">
           <div className="relative w-64 h-64 border-2 border-dashed border-white/40 rounded-3xl flex items-center justify-center">
-            <div className="absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 border-cyan-400 rounded-tl-xl" />
-            <div className="absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 border-cyan-400 rounded-tr-xl" />
-            <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-4 border-l-4 border-cyan-400 rounded-bl-xl" />
-            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 border-cyan-400 rounded-br-xl" />
+            <div className="absolute -top-2 -left-2 w-6 h-6 border-t-4 border-l-4 border-[#C2185B] rounded-tl-xl" />
+            <div className="absolute -top-2 -right-2 w-6 h-6 border-t-4 border-r-4 border-[#C2185B] rounded-tr-xl" />
+            <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-4 border-l-4 border-[#C2185B] rounded-bl-xl" />
+            <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-4 border-r-4 border-[#C2185B] rounded-br-xl" />
             <Camera className="w-10 h-10 text-white/30 animate-pulse" />
           </div>
         </div>
@@ -363,8 +363,8 @@ export default function ArScanner() {
       {/* Loading Indicator / Explicit Start Button */}
       {isInitializing && (
         <div className="absolute inset-0 z-30 bg-slate-950/90 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center text-white">
-          <RefreshCw className="w-10 h-10 text-cyan-400 animate-spin mb-4" />
-          <h3 className="text-lg font-semibold">Menyiapkan AR Scanner...</h3>
+          <RefreshCw className="w-10 h-10 text-[#C2185B] animate-spin mb-4" />
+          <h3 className="text-lg font-semibold">Menyiapkan Kamera CritaEyang...</h3>
           <p className="text-sm text-slate-400 mt-1 max-w-xs mb-6">
             Klik tombol di bawah jika pop-up kamera HP belum muncul secara otomatis
           </p>
@@ -374,7 +374,6 @@ export default function ArScanner() {
                 const stream = await navigator.mediaDevices.getUserMedia({
                   video: { facingMode: "environment" },
                 });
-                // Stop temporary test stream so MindAR takes over smoothly
                 stream.getTracks().forEach((track) => track.stop());
                 void startAr();
               } catch (err: unknown) {
@@ -385,7 +384,7 @@ export default function ArScanner() {
                 setIsInitializing(false);
               }
             }}
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-sm shadow-xl active:scale-95 flex items-center gap-2"
+            className="px-6 py-3 rounded-full bg-[#C2185B] hover:bg-[#D64B7A] text-white font-bold text-sm shadow-xl active:scale-95 flex items-center gap-2"
           >
             <Camera className="w-5 h-5" />
             <span>Aktifkan Kamera HP</span>
@@ -403,7 +402,7 @@ export default function ArScanner() {
           <p className="text-sm text-slate-300 max-w-xs mt-2 leading-relaxed">{error}</p>
           <button
             onClick={() => void startAr()}
-            className="mt-6 px-6 py-2.5 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition shadow-lg active:scale-95 flex items-center gap-2"
+            className="mt-6 px-6 py-2.5 rounded-full bg-[#C2185B] hover:bg-[#D64B7A] text-white font-semibold text-sm transition shadow-lg active:scale-95 flex items-center gap-2"
           >
             <RefreshCw className="w-4 h-4" />
             <span>Coba Lagi</span>
