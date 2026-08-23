@@ -220,6 +220,43 @@ export default function ArScanner() {
         setIsInitializing(false);
       }, 3500);
 
+      // Auto trigger jika dibuka via QR Code spesifik target (misal /scan?target=1)
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetParam = urlParams.get("target");
+
+      if (targetParam !== null) {
+        const targetIndexFromUrl = parseInt(targetParam, 10);
+        const autoTargetData = TARGET_LIST.find((t) => t.index === targetIndexFromUrl);
+        if (autoTargetData) {
+          setActiveTitle(autoTargetData.title);
+          const audio = new Audio(autoTargetData.audioSrc);
+          const startSec = autoTargetData.startTime || 0;
+          const playDur = autoTargetData.duration || 60;
+
+          currentAudioRef.current = audio;
+
+          const handleTimeUpdate = () => {
+            if (audio.currentTime >= startSec + playDur) {
+              audio.currentTime = startSec;
+            }
+          };
+
+          audioTimeUpdateHandlerRef.current = handleTimeUpdate;
+          audio.addEventListener("timeupdate", handleTimeUpdate);
+
+          const playPromise = audio.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                if (startSec > 0 && Math.abs(audio.currentTime - startSec) > 2) {
+                  audio.currentTime = startSec;
+                }
+              })
+              .catch(() => {});
+          }
+        }
+      }
+
       const targetElements = containerRef.current.querySelectorAll(".ar-target-item");
 
       targetElements.forEach((el) => {
