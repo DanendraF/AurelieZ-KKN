@@ -49,15 +49,15 @@ const steps = [
 const eyangSlides = [
   {
     src: "/assets/hero_illustration.jpg",
-    caption: "1. Eyang menyimpan album kenangan penuh rasa rindu",
+    caption: "“Setiap foto menyimpan rindu dan cerita yang tak pernah pudar.”",
   },
   {
     src: "/assets/hero_story_2.jpg",
-    caption: "2. Eyang menceritakan kisah bermakna kepada cucu tercinta",
+    caption: "“Suara Eyang selalu menjadi kehangatan yang paling menenangkan.”",
   },
   {
     src: "/assets/hero_story_3.jpg",
-    caption: "3. Kehangatan dan kebersamaan keluarga yang selalu abadi",
+    caption: "“Keluarga adalah rumah tempat kenangan indah selalu hidup.”",
   },
 ];
 
