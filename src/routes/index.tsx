@@ -108,9 +108,9 @@ function Index() {
       <header className="relative z-10 py-5 px-6 max-w-6xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <img
-            src="/assets/aurelie-Logo.png"
-            alt="CritaEyang Logo"
-            className="w-9 h-9 object-contain rounded-xl shadow-sm"
+            src="/assets/CeritaEyangLogo.png"
+            alt="CeritaEyang Logo"
+            className="h-9 w-auto object-contain rounded-xl"
           />
           <span className="text-xl font-black tracking-tight text-[#2C2C2C]">
             Crita<span className="text-[#C2185B]">Eyang</span> 🌸
