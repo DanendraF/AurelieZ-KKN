@@ -417,19 +417,19 @@ export default function ArScanner() {
           <div
             className={`w-full max-w-sm px-6 py-4 rounded-2xl backdrop-blur-xl border shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 text-center ${
               activeTitle
-                ? "bg-gradient-to-r from-emerald-600/90 to-teal-600/90 border-emerald-400/30 text-white scale-105"
+                ? "bg-[#2D5A46]/95 border-emerald-400/40 text-emerald-100 scale-105"
                 : "bg-slate-900/90 border-amber-500/30 text-amber-200"
             }`}
           >
             {activeTitle ? (
               <>
-                <Sparkles className="w-5 h-5 text-yellow-300 animate-spin" />
+                <Sparkles className="w-5 h-5 text-emerald-300 animate-spin" />
                 <span className="font-bold text-base tracking-wide">{activeTitle}</span>
               </>
             ) : (
               <>
                 <Camera className="w-5 h-5 text-amber-400 animate-pulse" />
-                <span className="font-semibold text-sm">Objek Belum Dikenali (Arahkan ke Gambar Target)</span>
+                <span className="font-semibold text-sm">Objek Belum Dikenali (Arahkan ke Foto Target)</span>
               </>
             )}
           </div>

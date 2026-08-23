@@ -7,15 +7,15 @@ const ArScanner = lazy(() => import("../components/ArScanner"));
 export const Route = createFileRoute("/scan")({
   head: () => ({
     meta: [
-      { title: "Mulai Scan — Scan Cerita" },
+      { title: "Kamera Scan AR — CritaEyang" },
       {
         name: "description",
-        content: "Arahkan kamera ke gambar untuk melihat animasi dan mendengar suaranya.",
+        content: "Arahkan kamera ke foto untuk melihat kenangan objek 3D dan mendengar suaranya.",
       },
-      { property: "og:title", content: "Mulai Scan — Scan Cerita" },
+      { property: "og:title", content: "Kamera Scan AR — CritaEyang" },
       {
         property: "og:description",
-        content: "Arahkan kamera ke gambar untuk melihat animasi dan mendengar suaranya.",
+        content: "Arahkan kamera ke foto untuk melihat kenangan objek 3D dan mendengar suaranya.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
