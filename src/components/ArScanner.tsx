@@ -29,12 +29,14 @@ function loadScript(src: string) {
   });
 }
 
-// 🎨 🎵 DAFTAR 9 TARGET, AUDIO & MODEL 3D UNIK MASING-MASING
+// 🎨 🎵 DAFTAR 9 TARGET (BISA GAMBAR/GIF/MODEL 3D UNIK)
 export const TARGET_LIST = [
   {
     index: 0,
     title: "Animal - KATSEYE",
     audioSrc: "/assets/Animal.mp3",
+    // 💡 Opsional: Masukkan path gambar overlay jika ada (misal "/assets/katseye_photo.png")
+    imageOverlay: undefined,
     color: "#3B82F6",
     shape: "a-sphere",
     animation: "property: position; to: 0 0.3 0.25; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine",
@@ -43,6 +45,7 @@ export const TARGET_LIST = [
     index: 1,
     title: "About You - The 1975",
     audioSrc: "/assets/About You.mp3",
+    imageOverlay: undefined,
     color: "#EC4899",
     shape: "a-box",
     animation: "property: rotation; to: 0 360 360; loop: true; dur: 4000; easing: linear",
@@ -51,6 +54,7 @@ export const TARGET_LIST = [
     index: 2,
     title: "Backburner - NIKI",
     audioSrc: "/assets/Backburner.mp3",
+    imageOverlay: undefined,
     color: "#10B981",
     shape: "a-torus",
     animation: "property: rotation; to: 360 360 0; loop: true; dur: 5000; easing: linear",
@@ -59,6 +63,7 @@ export const TARGET_LIST = [
     index: 3,
     title: "December - Neck Deep",
     audioSrc: "/assets/December.mp3",
+    imageOverlay: undefined,
     color: "#F59E0B",
     shape: "a-cone",
     animation: "property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear",
@@ -67,6 +72,7 @@ export const TARGET_LIST = [
     index: 4,
     title: "Die With A Smile - Lady Gaga & Bruno Mars",
     audioSrc: "/assets/Die With A Smile.mp3",
+    imageOverlay: undefined,
     color: "#8B5CF6",
     shape: "a-cylinder",
     animation: "property: scale; to: 0.6 0.6 0.6; dir: alternate; loop: true; dur: 800; easing: easeInOutQuad",
@@ -75,6 +81,7 @@ export const TARGET_LIST = [
     index: 5,
     title: "Famous Last Words - My Chemical Romance",
     audioSrc: "/assets/Famous Last Words.mp3",
+    imageOverlay: undefined,
     color: "#EF4444",
     shape: "a-octahedron",
     animation: "property: rotation; to: 360 0 360; loop: true; dur: 2500; easing: easeInOutCubic",
@@ -83,6 +90,7 @@ export const TARGET_LIST = [
     index: 6,
     title: "Payphone - Maroon 5",
     audioSrc: "/assets/Payphone.mp3",
+    imageOverlay: undefined,
     color: "#06B6D4",
     shape: "a-ring",
     animation: "property: rotation; to: 0 0 360; loop: true; dur: 3500; easing: linear",
@@ -91,6 +99,7 @@ export const TARGET_LIST = [
     index: 7,
     title: "Sailor Song - Gigi Perez",
     audioSrc: "/assets/Sailor Song.mp3",
+    imageOverlay: undefined,
     color: "#84CC16",
     shape: "a-torus-knot",
     animation: "property: rotation; to: 360 360 360; loop: true; dur: 6000; easing: linear",
@@ -99,6 +108,7 @@ export const TARGET_LIST = [
     index: 8,
     title: "Tanpa Cinta - Yovie & Nuno",
     audioSrc: "/assets/Tanpa Cinta.mp3",
+    imageOverlay: undefined,
     color: "#F97316",
     shape: "a-dodecahedron",
     animation: "property: position; to: 0 0 0.5; dir: alternate; loop: true; dur: 1500; easing: easeInOutBack",
@@ -129,8 +139,22 @@ export default function ArScanner() {
       await loadScript(MINDAR_SRC);
       if (!containerRef.current) return;
 
-      const targetsHtml = TARGET_LIST.map(
-        (t) => `
+      const targetsHtml = TARGET_LIST.map((t) => {
+        // Jika ada imageOverlay (misal foto orang/GIF/vektor), munculkan foto/GIF tersebut
+        if (t.imageOverlay) {
+          return `
+          <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
+            <a-image
+              src="${t.imageOverlay}"
+              position="0 0 0.1"
+              scale="0.8 0.8 0.8"
+              animation="${t.animation}"
+            ></a-image>
+          </a-entity>`;
+        }
+
+        // Default: Model Geometri 3D Unik dengan warna dan gerakan custom
+        return `
         <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
           <${t.shape}
             position="0 0 0.25"
@@ -141,8 +165,8 @@ export default function ArScanner() {
             material="roughness: 0.2; metalness: 0.7"
             animation="${t.animation}"
           ></${t.shape}>
-        </a-entity>`
-      ).join("");
+        </a-entity>`;
+      }).join("");
 
       containerRef.current.innerHTML = `
         <a-scene
