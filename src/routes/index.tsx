@@ -142,17 +142,17 @@ function Index() {
               </p>
             </div>
 
-            {/* Solid Pink Primary CTA Button */}
+            {/* Compact Minimalist Primary CTA Button */}
             <div className="pt-1">
               <Link
                 to="/scan"
-                className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3 sm:px-7 sm:py-3.5 rounded-xl bg-[#C2185B] hover:bg-[#D64B7A] text-white text-base sm:text-lg font-bold shadow-md shadow-[#C2185B]/25 transition-all duration-200 active:scale-95"
+                className="group relative inline-flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-[#C2185B] hover:bg-[#D64B7A] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 active:scale-95"
               >
-                <Camera className="w-5 h-5 sm:w-6 sm:h-6" />
+                <Camera className="w-4 h-4" />
                 <span>Buka Kamera Sekarang</span>
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
-              <p className="text-xs text-slate-500 mt-2 font-medium">
+              <p className="text-[11px] text-slate-400 mt-1.5 font-medium">
                 *Tanpa perlu mendaftar atau mengunduh aplikasi tambahan
               </p>
             </div>
