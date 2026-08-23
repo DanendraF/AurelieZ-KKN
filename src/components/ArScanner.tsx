@@ -30,17 +30,16 @@ function loadScript(src: string) {
 }
 
 // 🎵 DAFTAR 9 TARGET & AUDIO MASING-MASING
-// Tinggal ganti title & audioSrc sesuai nama file audio 9 orang kamu di folder public/assets/
 export const TARGET_LIST = [
-  { index: 0, title: "Cerita Orang 1", audioSrc: "/assets/A.mp3", color: "#EC4899" },
-  { index: 1, title: "Cerita Orang 2", audioSrc: "/assets/B.mp3", color: "#3B82F6" },
-  { index: 2, title: "Cerita Orang 3", audioSrc: "/assets/audio3.mp3", color: "#10B981" },
-  { index: 3, title: "Cerita Orang 4", audioSrc: "/assets/audio4.mp3", color: "#F59E0B" },
-  { index: 4, title: "Cerita Orang 5", audioSrc: "/assets/audio5.mp3", color: "#8B5CF6" },
-  { index: 5, title: "Cerita Orang 6", audioSrc: "/assets/audio6.mp3", color: "#EF4444" },
-  { index: 6, title: "Cerita Orang 7", audioSrc: "/assets/audio7.mp3", color: "#06B6D4" },
-  { index: 7, title: "Cerita Orang 8", audioSrc: "/assets/audio8.mp3", color: "#84CC16" },
-  { index: 8, title: "Cerita Orang 9", audioSrc: "/assets/audio9.mp3", color: "#F97316" },
+  { index: 0, title: "About You - The 1975", audioSrc: "/assets/About You.mp3", color: "#EC4899" },
+  { index: 1, title: "Animal - KATSEYE", audioSrc: "/assets/Animal.mp3", color: "#3B82F6" },
+  { index: 2, title: "Backburner - NIKI", audioSrc: "/assets/Backburner.mp3", color: "#10B981" },
+  { index: 3, title: "December - Neck Deep", audioSrc: "/assets/December.mp3", color: "#F59E0B" },
+  { index: 4, title: "Die With A Smile - Lady Gaga & Bruno Mars", audioSrc: "/assets/Die With A Smile.mp3", color: "#8B5CF6" },
+  { index: 5, title: "Famous Last Words - My Chemical Romance", audioSrc: "/assets/Famous Last Words.mp3", color: "#EF4444" },
+  { index: 6, title: "Payphone - Maroon 5", audioSrc: "/assets/Payphone.mp3", color: "#06B6D4" },
+  { index: 7, title: "Sailor Song - Gigi Perez", audioSrc: "/assets/Sailor Song.mp3", color: "#84CC16" },
+  { index: 8, title: "Tanpa Cinta - Yovie & Nuno", audioSrc: "/assets/Tanpa Cinta.mp3", color: "#F97316" },
 ];
 
 export default function ArScanner() {
