@@ -150,6 +150,12 @@ export default function ArScanner() {
     setError(null);
     setIsInitializing(true);
 
+    // Tandai bahwa permission sudah diberikan untuk 7 hari (7 * 24 * 60 * 60 * 1000 ms)
+    try {
+      const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+      localStorage.setItem("critaeyang_cam_granted", (Date.now() + SEVEN_DAYS_MS).toString());
+    } catch {}
+
     try {
       await loadScript(AFRAME_SRC);
       await loadScript(MINDAR_SRC);
@@ -337,7 +343,27 @@ export default function ArScanner() {
 
   useEffect(() => {
     let cancelled = false;
-    void startAr();
+
+    const initCamWithPermissionCheck = async () => {
+      try {
+        const storedExpiry = localStorage.getItem("critaeyang_cam_granted");
+        const expiryTime = storedExpiry ? parseInt(storedExpiry, 10) : 0;
+
+        // Jika izin pernah diberikan dan belum lewat 7 hari
+        if (expiryTime > Date.now()) {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment" },
+          });
+          stream.getTracks().forEach((track) => track.stop());
+        }
+      } catch {}
+
+      if (!cancelled) {
+        void startAr();
+      }
+    };
+
+    void initCamWithPermissionCheck();
 
     return () => {
       cancelled = true;
