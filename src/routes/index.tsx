@@ -80,20 +80,23 @@ function Index() {
 
       {/* Background Floating Nostalgia Particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-12 left-10 text-[#C2185B]/25 animate-pulse">
+        <div className="absolute top-12 left-10 text-[#C2185B]/25 animate-float-1">
           <Heart className="w-9 h-9 rotate-12 fill-[#C2185B]/10" />
         </div>
-        <div className="absolute top-1/4 right-12 text-amber-400/35 animate-bounce" style={{ animationDuration: "3s" }}>
+        <div className="absolute top-1/4 right-12 text-amber-400/35 animate-float-2">
           <Music className="w-9 h-9 -rotate-12" />
         </div>
-        <div className="absolute bottom-1/3 left-16 text-[#C2185B]/20 animate-pulse">
+        <div className="absolute bottom-1/3 left-16 text-[#C2185B]/20 animate-float-3">
           <ImageIcon className="w-10 h-10 rotate-6" />
         </div>
-        <div className="absolute top-2/3 right-1/4 text-amber-500/25 animate-spin" style={{ animationDuration: "14s" }}>
+        <div className="absolute top-2/3 right-1/4 text-amber-500/25 animate-float-1">
           <Sun className="w-10 h-10" />
         </div>
-        <div className="absolute bottom-12 left-1/3 text-[#C2185B]/30 animate-pulse">
+        <div className="absolute bottom-12 left-1/3 text-[#C2185B]/30 animate-float-2">
           <Sparkles className="w-8 h-8" />
+        </div>
+        <div className="absolute top-16 left-1/2 text-rose-400/30 animate-float-3">
+          <Heart className="w-6 h-6" />
         </div>
       </div>
 
