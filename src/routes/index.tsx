@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Camera, Volume2, Sparkles, ArrowRight, Heart, Music, Image as ImageIcon, Sun } from "lucide-react";
 
@@ -45,7 +46,31 @@ const steps = [
   },
 ];
 
+const eyangSlides = [
+  {
+    src: "/assets/hero_illustration.jpg",
+    caption: "1. Eyang menyimpan album kenangan penuh rasa rindu",
+  },
+  {
+    src: "/assets/hero_story_2.jpg",
+    caption: "2. Eyang menceritakan kisah bermakna kepada cucu tercinta",
+  },
+  {
+    src: "/assets/hero_story_3.jpg",
+    caption: "3. Kehangatan dan kebersamaan keluarga yang selalu abadi",
+  },
+];
+
 function Index() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % eyangSlides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-[#FFF8F5] text-[#2C2C2C] font-sans selection:bg-[#C2185B]/20 overflow-hidden">
       {/* Hidden Watermark */}
@@ -151,23 +176,50 @@ function Index() {
             </div>
           </div>
 
-          {/* Right Column: Warm Visual Illustration */}
+          {/* Right Column: Warm Visual Illustration Slideshow */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm sm:max-w-md">
               {/* Soft backdrop glow */}
               <div className="absolute -inset-3 bg-gradient-to-tr from-[#C2185B]/20 to-amber-200/60 rounded-3xl blur-xl -z-10" />
               
-              {/* Image Frame */}
-              <div className="relative rounded-2xl overflow-hidden border-4 border-white bg-white shadow-xl">
-                <img
-                  src="/assets/hero_illustration.jpg"
-                  alt="Ilustrasi Lansia Menggunakan AR Scan"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute bottom-3 left-3 right-3 bg-[#2C2C2C]/90 backdrop-blur-md p-3 rounded-xl text-white text-center">
-                  <p className="text-xs font-medium text-amber-100">
-                    "Kenangan lama jadi terasa lebih hangat dan berkesan."
-                  </p>
+              {/* Animated Slideshow Frame */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-4 border-white bg-white shadow-xl">
+                {eyangSlides.map((slide, idx) => (
+                  <div
+                    key={slide.src}
+                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                      idx === currentSlide
+                        ? "opacity-100 scale-100 blur-0"
+                        : "opacity-0 scale-105 blur-sm pointer-events-none"
+                    }`}
+                  >
+                    <img
+                      src={slide.src}
+                      alt={slide.caption}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-3 left-3 right-3 bg-[#2C2C2C]/90 backdrop-blur-md p-3 rounded-xl text-white text-center shadow-lg">
+                      <p className="text-xs font-semibold text-amber-100 leading-snug">
+                        {slide.caption}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Slide indicator dots */}
+                <div className="absolute top-3 right-3 flex gap-1.5 z-20">
+                  {eyangSlides.map((_, dotIdx) => (
+                    <button
+                      key={dotIdx}
+                      onClick={() => setCurrentSlide(dotIdx)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        dotIdx === currentSlide
+                          ? "w-5 bg-[#C2185B]"
+                          : "bg-white/60 hover:bg-white"
+                      }`}
+                      aria-label={`Go to slide ${dotIdx + 1}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
