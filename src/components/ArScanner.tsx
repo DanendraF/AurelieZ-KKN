@@ -29,17 +29,80 @@ function loadScript(src: string) {
   });
 }
 
-// 🎵 DAFTAR 9 TARGET & AUDIO MASING-MASING
+// 🎨 🎵 DAFTAR 9 TARGET, AUDIO & MODEL 3D UNIK MASING-MASING
 export const TARGET_LIST = [
-  { index: 0, title: "About You - The 1975", audioSrc: "/assets/About You.mp3", color: "#EC4899" },
-  { index: 1, title: "Animal - KATSEYE", audioSrc: "/assets/Animal.mp3", color: "#3B82F6" },
-  { index: 2, title: "Backburner - NIKI", audioSrc: "/assets/Backburner.mp3", color: "#10B981" },
-  { index: 3, title: "December - Neck Deep", audioSrc: "/assets/December.mp3", color: "#F59E0B" },
-  { index: 4, title: "Die With A Smile - Lady Gaga & Bruno Mars", audioSrc: "/assets/Die With A Smile.mp3", color: "#8B5CF6" },
-  { index: 5, title: "Famous Last Words - My Chemical Romance", audioSrc: "/assets/Famous Last Words.mp3", color: "#EF4444" },
-  { index: 6, title: "Payphone - Maroon 5", audioSrc: "/assets/Payphone.mp3", color: "#06B6D4" },
-  { index: 7, title: "Sailor Song - Gigi Perez", audioSrc: "/assets/Sailor Song.mp3", color: "#84CC16" },
-  { index: 8, title: "Tanpa Cinta - Yovie & Nuno", audioSrc: "/assets/Tanpa Cinta.mp3", color: "#F97316" },
+  {
+    index: 0,
+    title: "About You - The 1975",
+    audioSrc: "/assets/About You.mp3",
+    color: "#EC4899",
+    shape: "a-box",
+    animation: "property: rotation; to: 0 360 360; loop: true; dur: 4000; easing: linear",
+  },
+  {
+    index: 1,
+    title: "Animal - KATSEYE",
+    audioSrc: "/assets/Animal.mp3",
+    color: "#3B82F6",
+    shape: "a-sphere",
+    animation: "property: position; to: 0 0.3 0.25; dir: alternate; loop: true; dur: 1200; easing: easeInOutSine",
+  },
+  {
+    index: 2,
+    title: "Backburner - NIKI",
+    audioSrc: "/assets/Backburner.mp3",
+    color: "#10B981",
+    shape: "a-torus",
+    animation: "property: rotation; to: 360 360 0; loop: true; dur: 5000; easing: linear",
+  },
+  {
+    index: 3,
+    title: "December - Neck Deep",
+    audioSrc: "/assets/December.mp3",
+    color: "#F59E0B",
+    shape: "a-cone",
+    animation: "property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear",
+  },
+  {
+    index: 4,
+    title: "Die With A Smile - Lady Gaga & Bruno Mars",
+    audioSrc: "/assets/Die With A Smile.mp3",
+    color: "#8B5CF6",
+    shape: "a-cylinder",
+    animation: "property: scale; to: 0.6 0.6 0.6; dir: alternate; loop: true; dur: 800; easing: easeInOutQuad",
+  },
+  {
+    index: 5,
+    title: "Famous Last Words - My Chemical Romance",
+    audioSrc: "/assets/Famous Last Words.mp3",
+    color: "#EF4444",
+    shape: "a-octahedron",
+    animation: "property: rotation; to: 360 0 360; loop: true; dur: 2500; easing: easeInOutCubic",
+  },
+  {
+    index: 6,
+    title: "Payphone - Maroon 5",
+    audioSrc: "/assets/Payphone.mp3",
+    color: "#06B6D4",
+    shape: "a-ring",
+    animation: "property: rotation; to: 0 0 360; loop: true; dur: 3500; easing: linear",
+  },
+  {
+    index: 7,
+    title: "Sailor Song - Gigi Perez",
+    audioSrc: "/assets/Sailor Song.mp3",
+    color: "#84CC16",
+    shape: "a-torus-knot",
+    animation: "property: rotation; to: 360 360 360; loop: true; dur: 6000; easing: linear",
+  },
+  {
+    index: 8,
+    title: "Tanpa Cinta - Yovie & Nuno",
+    audioSrc: "/assets/Tanpa Cinta.mp3",
+    color: "#F97316",
+    shape: "a-dodecahedron",
+    animation: "property: position; to: 0 0 0.5; dir: alternate; loop: true; dur: 1500; easing: easeInOutBack",
+  },
 ];
 
 export default function ArScanner() {
@@ -69,13 +132,15 @@ export default function ArScanner() {
       const targetsHtml = TARGET_LIST.map(
         (t) => `
         <a-entity class="ar-target-item" data-index="${t.index}" mindar-image-target="targetIndex: ${t.index}">
-          <a-box
+          <${t.shape}
             position="0 0 0.25"
-            scale="0.45 0.45 0.45"
+            scale="0.35 0.35 0.35"
+            radius="0.4"
+            radius-tubular="0.08"
             color="${t.color}"
-            material="roughness: 0.3; metalness: 0.8"
-            animation="property: rotation; to: 0 360 360; loop: true; dur: 5000; easing: linear"
-          ></a-box>
+            material="roughness: 0.2; metalness: 0.7"
+            animation="${t.animation}"
+          ></${t.shape}>
         </a-entity>`
       ).join("");
 
