@@ -207,7 +207,7 @@ export default function ArScanner() {
 
       containerRef.current.innerHTML = `
         <a-scene
-          mindar-image="imageTargetSrc: /targets/targets.mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
+          mindar-image="imageTargetSrc: /targets/targets (10).mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
           color-space="sRGB"
           renderer="colorManagement: true, physicallyCorrectLights, alpha: true"
           vr-mode-ui="enabled: false"
@@ -346,7 +346,7 @@ export default function ArScanner() {
         });
       });
     } catch {
-      setError("Kamera gagal diakses atau file targets.mind belum lengkap.");
+      setError("Kamera gagal diakses atau file targets (10).mind belum lengkap.");
       setIsInitializing(false);
     }
   };
