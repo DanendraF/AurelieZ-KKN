@@ -121,6 +121,16 @@ export const TARGET_LIST = [
     flowerRight: "🌸",
     loveIcon: "💞",
   },
+  {
+    index: 9,
+    title: "Ibu Rosalia",
+    audioSrc: "/assets/buRosalia.mp3",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌹",
+    flowerRight: "🌺",
+    loveIcon: "💖",
+  },
 ];
 
 export default function ArScanner() {
