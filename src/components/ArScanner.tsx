@@ -34,7 +34,7 @@ export const TARGET_LIST = [
   {
     index: 0,
     title: "Eyang Rosaliya",
-    audioSrc: "/assets/buRosalia.mp3",
+    audioSrc: "/assets/buRosalia.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌹",
@@ -44,7 +44,7 @@ export const TARGET_LIST = [
   {
     index: 1,
     title: "Eyang Sudarsana",
-    audioSrc: "/assets/sudarsana.mp3",
+    audioSrc: "/assets/sudarsana.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌸",
@@ -54,7 +54,7 @@ export const TARGET_LIST = [
   {
     index: 2,
     title: "Eyang Sugiyati",
-    audioSrc: "/assets/sugiyati.mp3",
+    audioSrc: "/assets/sugiyati.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌻",
@@ -64,7 +64,7 @@ export const TARGET_LIST = [
   {
     index: 3,
     title: "Eyang Sumarni",
-    audioSrc: "/assets/sumarni.mp3",
+    audioSrc: "/assets/sumarni.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🪻",
@@ -74,7 +74,7 @@ export const TARGET_LIST = [
   {
     index: 4,
     title: "Eyang Sutinah",
-    audioSrc: "/assets/sutinah.mp3",
+    audioSrc: "/assets/sutinah.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌺",
@@ -84,7 +84,7 @@ export const TARGET_LIST = [
   {
     index: 5,
     title: "Eyang Tuwanti",
-    audioSrc: "/assets/tuwanti.mp3",
+    audioSrc: "/assets/tuwanti.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌷",
@@ -94,7 +94,7 @@ export const TARGET_LIST = [
   {
     index: 6,
     title: "Eyang Widjiati",
-    audioSrc: "/assets/widjiati.mp3",
+    audioSrc: "/assets/widjiati.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌼",
@@ -104,7 +104,7 @@ export const TARGET_LIST = [
   {
     index: 7,
     title: "Eyang Murdjilah",
-    audioSrc: "/assets/murdjilah.mp3",
+    audioSrc: "/assets/murdjilah.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌸",
@@ -114,7 +114,7 @@ export const TARGET_LIST = [
   {
     index: 8,
     title: "Eyang Painem",
-    audioSrc: "/assets/painem.mp3",
+    audioSrc: "/assets/painem.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌹",
