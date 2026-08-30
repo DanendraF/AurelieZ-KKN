@@ -29,12 +29,42 @@ function loadScript(src: string) {
   });
 }
 
-// 🎨 🎵 DAFTAR 9 TARGET EYANG (SESUAI URUTAN MINDAR COMPILER)
+// 🎨 🎵 DAFTAR 12 TARGET EYANG (SESUAI URUTAN MINDAR COMPILER - eyang.mind)
 export const TARGET_LIST = [
   {
     index: 0,
-    title: "Eyang Rosaliya",
-    audioSrc: "/assets/buRosalia.m4a",
+    title: "Eyang Agustini",
+    audioSrc: "/assets/bu agustini.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌸",
+    flowerRight: "🌷",
+    loveIcon: "💗",
+  },
+  {
+    index: 1,
+    title: "Eyang Murdjilah",
+    audioSrc: "/assets/bu murjilah 2.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌸",
+    flowerRight: "🪻",
+    loveIcon: "💝",
+  },
+  {
+    index: 2,
+    title: "Eyang Painem",
+    audioSrc: "/assets/bu painem.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌹",
+    flowerRight: "🌸",
+    loveIcon: "💞",
+  },
+  {
+    index: 3,
+    title: "Eyang Rosalia",
+    audioSrc: "/assets/bu rosalia.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌹",
@@ -42,29 +72,19 @@ export const TARGET_LIST = [
     loveIcon: "💖",
   },
   {
-    index: 1,
+    index: 4,
     title: "Eyang Sudarsana",
     audioSrc: "/assets/sudarsana.m4a",
     startTime: 0,
     duration: 60,
-    flowerLeft: "🌸",
-    flowerRight: "🌷",
+    flowerLeft: "🌻",
+    flowerRight: "🌼",
     loveIcon: "💙",
   },
   {
-    index: 2,
-    title: "Eyang Sugiyati",
-    audioSrc: "/assets/sugiyati.m4a",
-    startTime: 0,
-    duration: 60,
-    flowerLeft: "🌻",
-    flowerRight: "🌼",
-    loveIcon: "💗",
-  },
-  {
-    index: 3,
-    title: "Eyang Sumarni",
-    audioSrc: "/assets/sumarni.m4a",
+    index: 5,
+    title: "Eyang Sudiyem",
+    audioSrc: "/assets/bu sudiyem.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🪻",
@@ -72,7 +92,27 @@ export const TARGET_LIST = [
     loveIcon: "💓",
   },
   {
-    index: 4,
+    index: 6,
+    title: "Eyang Sugiyati",
+    audioSrc: "/assets/bu sugiyati.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌻",
+    flowerRight: "🌼",
+    loveIcon: "💗",
+  },
+  {
+    index: 7,
+    title: "Eyang Sumarni",
+    audioSrc: "/assets/bu sumarni.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🪻",
+    flowerRight: "🌷",
+    loveIcon: "💓",
+  },
+  {
+    index: 8,
     title: "Eyang Sutinah",
     audioSrc: "/assets/sutinah.m4a",
     startTime: 0,
@@ -82,7 +122,7 @@ export const TARGET_LIST = [
     loveIcon: "❤️",
   },
   {
-    index: 5,
+    index: 9,
     title: "Eyang Tuwanti",
     audioSrc: "/assets/tuwanti.m4a",
     startTime: 0,
@@ -92,9 +132,9 @@ export const TARGET_LIST = [
     loveIcon: "💖",
   },
   {
-    index: 6,
-    title: "Eyang Widjiati",
-    audioSrc: "/assets/widjiati.m4a",
+    index: 10,
+    title: "Eyang Widarto",
+    audioSrc: "/assets/pa widarto.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌼",
@@ -102,24 +142,14 @@ export const TARGET_LIST = [
     loveIcon: "💘",
   },
   {
-    index: 7,
-    title: "Eyang Murdjilah",
-    audioSrc: "/assets/murdjilah.m4a",
+    index: 11,
+    title: "Eyang Widjiati",
+    audioSrc: "/assets/bu wijiati.m4a",
     startTime: 0,
     duration: 60,
-    flowerLeft: "🌸",
-    flowerRight: "🪻",
-    loveIcon: "💝",
-  },
-  {
-    index: 8,
-    title: "Eyang Painem",
-    audioSrc: "/assets/painem.m4a",
-    startTime: 0,
-    duration: 60,
-    flowerLeft: "🌹",
-    flowerRight: "🌸",
-    loveIcon: "💞",
+    flowerLeft: "🌼",
+    flowerRight: "🌹",
+    loveIcon: "💘",
   },
 ];
 
@@ -197,7 +227,7 @@ export default function ArScanner() {
 
       containerRef.current.innerHTML = `
         <a-scene
-          mindar-image="imageTargetSrc: /targets/targets.mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
+          mindar-image="imageTargetSrc: /targets/eyang.mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
           color-space="sRGB"
           renderer="colorManagement: true, physicallyCorrectLights, alpha: true"
           vr-mode-ui="enabled: false"
