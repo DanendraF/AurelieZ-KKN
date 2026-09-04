@@ -116,9 +116,12 @@ function Index() {
             Crita<span className="text-[#C2185B]">Eyang</span> 🌸
           </span>
         </div>
-        <span className="text-xs font-semibold px-3.5 py-1 bg-[#C2185B]/10 border border-[#C2185B]/20 text-[#C2185B] rounded-full shadow-sm">
-          Oleh Aurelie
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="hidden sm:inline-block text-xs font-semibold px-3.5 py-1 bg-[#C2185B]/10 border border-[#C2185B]/20 text-[#C2185B] rounded-full shadow-sm">
+            Oleh Aurelie
+          </span>
+          <img src="/assets/LOGO_UNIT_3.png" alt="Logo Unit 3" className="h-8 w-auto object-contain" />
+        </div>
       </header>
 
       {/* Main Hero Section */}
@@ -129,82 +132,68 @@ function Index() {
             <div className="space-y-3">
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#C2185B]/10 border border-[#C2185B]/20 text-[#C2185B] font-semibold text-xs shadow-xs">
                 <Sparkles className="w-3.5 h-3.5" />
-                Album Foto Kenangan Digital Eyang 💖
+                Cara Baru Mengenang
               </span>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#2C2C2C] leading-tight tracking-tight">
-                Pindai Foto, <br className="hidden sm:inline" />
-                <span className="text-[#C2185B] underline decoration-[#C2185B]/40 decoration-wavy underline-offset-4">
-                  Dengarkan Pesan di Baliknya
-                </span>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-[#2C2C2C] leading-tight tracking-tight">
+                Pindai Foto,<br />
+                <span className="text-[#C2185B]">Dengarkan Pesan</span> di Baliknya
               </h1>
-              <p className="text-base sm:text-lg text-[#3E2723] leading-relaxed max-w-xl mx-auto lg:mx-0 font-medium">
-                Arahkan kamera HP ke foto fisik. Suara lembut dan pesan penuh kasih dari Eyang akan langsung terdengar secara otomatis.
+              <p className="text-base text-[#3E2723]/80 font-medium max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                Nyalakan kamera, arahkan ke foto fisik Eyang, dan saksikan fotonya bercerita. Suara mereka akan menemani setiap kenangan indah.
               </p>
             </div>
 
-            {/* Compact Minimalist Primary CTA Button */}
-            <div className="pt-1">
+            <div className="pt-2">
               <Link
                 to="/scan"
-                className="group relative inline-flex items-center justify-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-[#C2185B] hover:bg-[#D64B7A] text-white text-xs sm:text-sm font-semibold shadow-sm transition-all duration-200 active:scale-95"
+                className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3 bg-[#C2185B] text-white font-bold rounded-full overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                <Camera className="w-4 h-4" />
-                <span>Buka Kamera Sekarang</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                <div className="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+                <Camera className="w-5 h-5 transition-transform group-hover:rotate-12" />
+                <span>Mulai Pindai Foto Sekarang</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <p className="text-[11px] text-slate-400 mt-1.5 font-medium">
-                *Tanpa perlu mendaftar atau mengunduh aplikasi tambahan
-              </p>
             </div>
+          </div>
 
-            {/* Simple 3 Steps */}
-            <div className="pt-6 border-t border-amber-200/60">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 text-center lg:text-left">
-                Tiga Langkah Mudah:
-              </h3>
-              <div className="grid sm:grid-cols-3 gap-3 text-left">
-                {steps.map((s) => (
-                  <div
-                    key={s.step}
-                    className="p-3.5 rounded-xl bg-white/90 backdrop-blur-sm border border-amber-200/70 shadow-sm"
-                  >
-                    <div className="flex items-center gap-2.5 mb-1.5">
-                      <div className={`w-7 h-7 rounded-lg border ${s.color} flex items-center justify-center font-bold text-xs`}>
-                        {s.step}
-                      </div>
-                      <span className="font-bold text-[#2C2C2C] text-xs sm:text-sm">{s.title}</span>
+          {/* Right Column: Steps & Illustration Slide */}
+          <div className="lg:col-span-5 flex flex-col gap-5">
+            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-5 shadow-sm border border-white/50">
+              <h2 className="text-sm font-bold text-[#2C2C2C] mb-4 flex items-center gap-2">
+                <Heart className="w-4 h-4 text-[#C2185B]" /> Cara Kerja
+              </h2>
+              <div className="space-y-3">
+                {steps.map((s, idx) => (
+                  <div key={idx} className="flex gap-3 items-start">
+                    <div className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full border ${s.color}`}>
+                      <s.icon className="w-4 h-4" />
                     </div>
-                    <p className="text-[11px] sm:text-xs text-[#3E2723]/80 leading-normal">{s.desc}</p>
+                    <div>
+                      <h3 className="font-bold text-sm text-[#2C2C2C]">{s.title}</h3>
+                      <p className="text-[#3E2723]/70 text-xs font-medium leading-relaxed">{s.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Warm Visual Illustration Slideshow */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm sm:max-w-md">
-              {/* Soft backdrop glow */}
-              <div className="absolute -inset-3 bg-gradient-to-tr from-[#C2185B]/20 to-amber-200/60 rounded-3xl blur-xl -z-10" />
-              
-              {/* Animated Slideshow Frame */}
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-4 border-white bg-white shadow-xl">
+            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-4 shadow-sm border border-white/50 relative">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-amber-50">
                 {eyangSlides.map((slide, idx) => (
                   <div
-                    key={slide.src}
+                    key={idx}
                     className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                      idx === currentSlide
-                        ? "opacity-100 scale-100 blur-0"
-                        : "opacity-0 scale-105 blur-sm pointer-events-none"
+                      idx === currentSlide ? "opacity-100 scale-100 blur-none z-10" : "opacity-0 scale-105 blur-sm z-0"
                     }`}
                   >
                     <img
                       src={slide.src}
-                      alt={slide.caption}
+                      alt={`Cerita Eyang Illustration ${idx + 1}`}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-3 left-3 right-3 bg-[#2C2C2C]/90 backdrop-blur-md p-3 rounded-xl text-white text-center shadow-lg">
-                      <p className="text-xs font-semibold text-amber-100 leading-snug">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="text-white text-xs sm:text-sm font-medium leading-relaxed italic text-shadow-sm drop-shadow-md">
                         {slide.caption}
                       </p>
                     </div>
@@ -233,10 +222,10 @@ function Index() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 py-5 border-t border-amber-200/60 text-center text-xs text-slate-500">
+      <footer className="relative z-10 py-6 border-t border-amber-200/60 flex flex-col items-center justify-center gap-3 text-center text-xs text-slate-500">
+        <img src="/assets/UII (Background Terang).png" alt="Logo UII" className="h-10 w-auto opacity-80 mix-blend-multiply" />
         <p>© 2026 CritaEyang • Dibuat oleh Aurelie • Didesain Khusus untuk Kenyamanan Semua Usia</p>
       </footer>
     </div>
   );
 }
-
