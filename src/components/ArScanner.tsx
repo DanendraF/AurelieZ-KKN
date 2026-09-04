@@ -29,12 +29,12 @@ function loadScript(src: string) {
   });
 }
 
-// 🎨 🎵 DAFTAR 12 TARGET EYANG (SESUAI URUTAN MINDAR COMPILER - eyang.mind)
+// 🎨 🎵 DAFTAR 15 TARGET EYANG (SESUAI URUTAN MINDAR COMPILER - targets-upd.mind)
 export const TARGET_LIST = [
   {
     index: 0,
-    title: "Eyang Agustini",
-    audioSrc: "/assets/bu agustini.m4a",
+    title: "Eyang Suwarmini",
+    audioSrc: "/assets/bu suwarmini.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌸",
@@ -43,16 +43,6 @@ export const TARGET_LIST = [
   },
   {
     index: 1,
-    title: "Eyang Murdjilah",
-    audioSrc: "/assets/bu murjilah 2.m4a",
-    startTime: 0,
-    duration: 60,
-    flowerLeft: "🌸",
-    flowerRight: "🪻",
-    loveIcon: "💝",
-  },
-  {
-    index: 2,
     title: "Eyang Painem",
     audioSrc: "/assets/bu painem.m4a",
     startTime: 0,
@@ -62,8 +52,8 @@ export const TARGET_LIST = [
     loveIcon: "💞",
   },
   {
-    index: 3,
-    title: "Eyang Rosalia",
+    index: 2,
+    title: "Eyang Rosaliya",
     audioSrc: "/assets/bu rosalia.m4a",
     startTime: 0,
     duration: 60,
@@ -72,9 +62,19 @@ export const TARGET_LIST = [
     loveIcon: "💖",
   },
   {
+    index: 3,
+    title: "Eyang Agustini",
+    audioSrc: "/assets/bu agustini.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌸",
+    flowerRight: "🌷",
+    loveIcon: "💗",
+  },
+  {
     index: 4,
     title: "Eyang Sudarsana",
-    audioSrc: "/assets/sudarsana.m4a",
+    audioSrc: "/assets/pa sudarsana.m4a",
     startTime: 0,
     duration: 60,
     flowerLeft: "🌻",
@@ -83,56 +83,26 @@ export const TARGET_LIST = [
   },
   {
     index: 5,
-    title: "Eyang Sudiyem",
-    audioSrc: "/assets/bu sudiyem.m4a",
+    title: "Eyang Murdjilah",
+    audioSrc: "/assets/bu murjilah 2.m4a",
     startTime: 0,
     duration: 60,
-    flowerLeft: "🪻",
-    flowerRight: "🌸",
-    loveIcon: "💓",
+    flowerLeft: "🌸",
+    flowerRight: "🪻",
+    loveIcon: "💝",
   },
   {
     index: 6,
-    title: "Eyang Sugiyati",
-    audioSrc: "/assets/bu sugiyati.m4a",
+    title: "Eyang Widjiati",
+    audioSrc: "/assets/bu wijiati.m4a",
     startTime: 0,
     duration: 60,
-    flowerLeft: "🌻",
-    flowerRight: "🌼",
-    loveIcon: "💗",
+    flowerLeft: "🌼",
+    flowerRight: "🌹",
+    loveIcon: "💘",
   },
   {
     index: 7,
-    title: "Eyang Sumarni",
-    audioSrc: "/assets/bu sumarni.m4a",
-    startTime: 0,
-    duration: 60,
-    flowerLeft: "🪻",
-    flowerRight: "🌷",
-    loveIcon: "💓",
-  },
-  {
-    index: 8,
-    title: "Eyang Sutinah",
-    audioSrc: "/assets/sutinah.m4a",
-    startTime: 0,
-    duration: 60,
-    flowerLeft: "🌺",
-    flowerRight: "🌷",
-    loveIcon: "❤️",
-  },
-  {
-    index: 9,
-    title: "Eyang Tuwanti",
-    audioSrc: "/assets/tuwanti.m4a",
-    startTime: 0,
-    duration: 60,
-    flowerLeft: "🌷",
-    flowerRight: "🌻",
-    loveIcon: "💖",
-  },
-  {
-    index: 10,
     title: "Eyang Widarto",
     audioSrc: "/assets/pa widarto.m4a",
     startTime: 0,
@@ -142,15 +112,75 @@ export const TARGET_LIST = [
     loveIcon: "💘",
   },
   {
-    index: 11,
-    title: "Eyang Widjiati",
-    audioSrc: "/assets/bu wijiati.m4a",
+    index: 8,
+    title: "Eyang Sugiyati",
+    audioSrc: "/assets/bu sugiyati.m4a",
     startTime: 0,
     duration: 60,
-    flowerLeft: "🌼",
-    flowerRight: "🌹",
-    loveIcon: "💘",
+    flowerLeft: "🌻",
+    flowerRight: "🌼",
+    loveIcon: "💗",
   },
+  {
+    index: 9,
+    title: "Eyang Sutinah",
+    audioSrc: "/assets/sutinah.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌺",
+    flowerRight: "🌷",
+    loveIcon: "❤️",
+  },
+  {
+    index: 10,
+    title: "Eyang Sumarni",
+    audioSrc: "/assets/bu sumarni.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🪻",
+    flowerRight: "🌷",
+    loveIcon: "💓",
+  },
+  {
+    index: 11,
+    title: "Eyang Tuwanti",
+    audioSrc: "/assets/bu tuwanti.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌷",
+    flowerRight: "🌻",
+    loveIcon: "💖",
+  },
+  {
+    index: 12,
+    title: "Eyang Sudiyem",
+    audioSrc: "/assets/bu sudiyem.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🪻",
+    flowerRight: "🌸",
+    loveIcon: "💓",
+  },
+  {
+    index: 13,
+    title: "Eyang Supadi",
+    audioSrc: "/assets/pa supadi.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌻",
+    flowerRight: "🌼",
+    loveIcon: "💙",
+  },
+  {
+    index: 14,
+    title: "Eyang Gril",
+    audioSrc: "/assets/bu gril.m4a",
+    startTime: 0,
+    duration: 60,
+    flowerLeft: "🌸",
+    flowerRight: "🌷",
+    loveIcon: "💗",
+  }
 ];
 
 export default function ArScanner() {
@@ -227,7 +257,7 @@ export default function ArScanner() {
 
       containerRef.current.innerHTML = `
         <a-scene
-          mindar-image="imageTargetSrc: /targets/eyang.mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
+          mindar-image="imageTargetSrc: /targets/targets-upd.mind; uiScanning: no; uiLoading: no; uiError: no; filterMinCF:0.0001; filterBeta: 0.001;"
           color-space="sRGB"
           renderer="colorManagement: true, physicallyCorrectLights, alpha: true"
           vr-mode-ui="enabled: false"
